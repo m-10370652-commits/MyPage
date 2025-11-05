@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me - FoxWorld</title>
+<style>
+    /* ---------- Body & Background ---------- */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/Background.png') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        padding: 60px 20px;
+    }
+
+    /* ---------- Back Arrow ---------- */
+    .back-arrow {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        font-size: 2.2em;
+        color: #ff6600;
+        text-decoration: none;
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .back-arrow:hover {
+        color: #ffa64d;
+        transform: scale(1.15);
+    }
+
+    /* ---------- Container ---------- */
+    .container {
+        max-width: 900px;
+        margin: 80px auto 0;
+        background: rgba(27,27,27,0.7);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        text-align: center;
+        animation: fadeIn 1s ease;
+    }
+
+    /* ---------- Header ---------- */
+    h1 {
+        font-size: 2.5em;
+        color: #ff6600;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+    }
+
+    /* ---------- Paragraphs ---------- */
+    p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        font-family: 'Times New Roman', Times, serif;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    /* ---------- Image + Text Section ---------- */
+    .about-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px;
+        flex-wrap: wrap; /* Mobile friendly */
+    }
+
+    .about-section img {
+        width: 220px;
+        height: 220px;
+        border-radius: 20px;
+        object-fit: cover;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .about-section img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255,102,0,0.6);
+    }
+
+    .about-section p {
+        flex: 1;
+        font-size: 1.1em;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    /* ---------- Modal (Image Zoom) ---------- */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        justify-content: center;
+        align-items: center;
+        animation: fadeInModal 0.3s ease;
+    }
+
+    .image-modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        animation: zoomIn 0.3s ease;
+    }
+
+    .image-modal:active {
+        display: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInModal {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+    <!-- Back Arrow -->
+    <a href="index.html" class="back-arrow">&#8592;</a>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>About Me</h1>
+
+        <!-- Image + Text Section -->
+        <div class="about-section">
+            <img src="img/FoxPortrait.png" alt="Fox Portrait" onclick="openModal(this)">
+            <p>
+                Hello! I'm Haven Witherz. I am a Writer and a Programmer (As you can see). I work on HTML, JAVA, PYTHON, and many more. I create a lot of different projects due to me being bored majority of the time.  Feel free to talk to me whenever you feel like. Just don't do anything stupid (please) or I might block you.
+            </p>
+        </div>
+
+        <p>
+            Other than that, I enjoy playing games like Minecraft and Roblox. Though I don't usually play games that much anymore. I mostly read books like LoTR and The Hobbit when I have the time. I also create art as you can see.
+        </p>
+        <p>
+            If you want to reach out to me, you can find me on my Fuzzpage or Pronouns Page linked in the Menu. I hope you enjoy my profile and the content I've created here. Thank you for visiting FoxWorld!
+        </p>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeModal()">
+        <img id="modalImage" src="" alt="Enlarged Image">
+    </div>
+
+<script>
+    // Open modal and display clicked image
+    function openModal(imgElement) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modalImg.src = imgElement.src;
+        modal.style.display = 'flex';
+    }
+
+    // Close modal when clicking outside the image
+    function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

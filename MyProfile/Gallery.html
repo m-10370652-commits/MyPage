@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery - FoxWorld</title>
+<style>
+    /* ---------- Body & Background ---------- */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/Background.png') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        overflow-y: auto;
+        padding-bottom: 100px;
+    }
+
+    /* ---------- Back Arrow ---------- */
+    .back-arrow {
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        font-size: 2em;
+        color: #ff6600;
+        text-decoration: none;
+        transition: transform 0.2s ease, color 0.2s ease;
+        z-index: 10;
+    }
+
+    .back-arrow:hover {
+        color: #ffa64d;
+        transform: scale(1.15);
+    }
+
+    /* ---------- Header ---------- */
+    h1 {
+        text-align: center;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-top: 100px;
+        font-size: 2.8em;
+        color: #ff6600;
+        text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+        animation: fadeIn 1s ease;
+    }
+
+    /* ---------- Gallery Grid ---------- */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 50px 60px;
+        justify-items: center;
+        animation: fadeInUp 1.2s ease;
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255,102,0,0.7);
+    }
+
+    /* ---------- Modal for Enlarged Image ---------- */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        justify-content: center;
+        align-items: center;
+        animation: fadeInModal 0.3s ease;
+    }
+
+    .image-modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        animation: zoomIn 0.3s ease;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInModal {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+    <!-- Back Arrow -->
+    <a href="index.html" class="back-arrow">&#8592;</a>
+
+    <!-- Header -->
+    <h1>Gallery</h1>
+
+    <!-- Gallery Grid -->
+    <div class="gallery">
+        <img src="img/art1.png" alt="Art 1" onclick="openModal(this)">
+        <img src="img/art2.png" alt="Art 2" onclick="openModal(this)">
+        <img src="img/art3.png" alt="Art 3" onclick="openModal(this)">
+        <img src="img/art4.png" alt="Art 4" onclick="openModal(this)">
+        <img src="img/art5.png" alt="Art 5" onclick="openModal(this)">
+        <img src="img/art6.png" alt="Art 6" onclick="openModal(this)">
+    </div>
+
+    <!-- Modal (Image Zoom) -->
+    <div id="imageModal" class="image-modal" onclick="closeModal()">
+        <img id="modalImage" src="" alt="Enlarged Artwork">
+    </div>
+
+<script>
+    function openModal(imgElement) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modalImg.src = imgElement.src;
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
